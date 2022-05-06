@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle `
+const GlobalStyle = createGlobalStyle`
     *, *::before, *::after {
         margin: 0;
         padding: 0;
@@ -9,9 +9,13 @@ const GlobalStyle = createGlobalStyle `
     }
 
     body {
-        min-height: 100vh;
-        max-height: 100vh;
+        height: 100vh;
+        background: #021f1f;
     }
-`
 
-export default GlobalStyle
+    #root {
+        height: 100%;
+    }
+`;
+
+export default GlobalStyle;

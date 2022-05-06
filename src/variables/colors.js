@@ -1,7 +1,7 @@
 export default {
-    dk_yellow_darker: "#413E33",
-    dk_yellow: "#A69351",
-    neutral_yellow: "#D9C16A",
-    lt_yellow: "#F5DA78",
-    lt_yellow_lighter: "#E0D6B1",
-} 
+   dk_teal_darker: '#023535',
+   dk_teal: '#015958',
+   neutral_teal: '#008F8C',
+   lt_teal: '#0CABA8',
+   lt_teal_lighter: '#0FC2C0',
+};
