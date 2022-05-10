@@ -1,0 +1,11 @@
+{
+   "translation": {
+      "Home": "Início",
+      "Projects": "Projetos",
+      "About": "Sobre",
+      "Contact": "Contato",
+      "Hello": "Olá!",
+      "preName": "Meu nome é",
+      "indexText": "E sou um desenvolvedor full stack com node-js"
+   }
+}

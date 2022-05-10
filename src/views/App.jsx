@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import About from '../routes/About';
+import Index from '../routes/Index';
 import SideBar from '../components/SideBar';
 import styled from 'styled-components';
 
@@ -19,6 +20,7 @@ export default () => {
          <Container>
             <Routes>
                <Route path="/about" element={<About />}></Route>
+               <Route path="/" element={<Index />}></Route>
             </Routes>
          </Container>
       </Wrapper>

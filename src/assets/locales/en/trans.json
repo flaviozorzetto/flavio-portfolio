@@ -1,0 +1,11 @@
+{
+   "translation": {
+      "Home": "Home",
+      "Projects": "Projects",
+      "About": "About",
+      "Contact": "Contact",
+      "Hello": "Hello!",
+      "preName": "My name is",
+      "indexText": "And i'm a full stack developer using node-js"
+   }
+}

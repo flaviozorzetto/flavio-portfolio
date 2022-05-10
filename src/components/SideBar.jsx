@@ -1,16 +1,29 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import colors from '../variables/colors.js';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import chevron from '../assets/svgs/chevron_right.svg';
+import globe from '../assets/svgs/language.svg';
+import i18next from 'i18next';
+import colors from '../variables/colors.js';
+import 'flag-icon-css/css/flag-icons.min.css';
 
 const SideBar = styled.aside`
    height: 100%;
-   background-color: #011212c8;
-   color: white;
+   background-color: #023535;
+   color: #ffffff;
+   position: relative;
 
-   width: 120px;
-   animation-name: opening;
-   animation-duration: 1s;
+   ${props =>
+      props.open
+         ? `
+      width: 200px;
+      animation: opening 0.6s ease-in-out;
+      `
+         : `
+      width: 0px;
+      animation: closing 0.6s ease-in-out;
+         `}
 
    @keyframes opening {
       0% {
@@ -18,20 +31,23 @@ const SideBar = styled.aside`
       }
 
       100% {
-         width: 120px;
+         width: 200px;
+      }
+   }
+
+   @keyframes closing {
+      0% {
+         width: 200px;
+      }
+
+      100% {
+         width: 0px;
       }
    }
 `;
 
-const Wrapper = styled.div`
-   height: 100%;
-   display: flex;
-   flex-direction: column;
-   padding: 3rem 0;
-   justify-content: space-between;
-   align-items: center;
-
-   animation: drawer-show 2s;
+const drawer_show_kf = `
+animation: drawer-show 2s;
 
    @keyframes drawer-show {
       0% {
@@ -45,6 +61,32 @@ const Wrapper = styled.div`
       100% {
          opacity: 1;
       }
+   }`;
+
+const Wrapper = styled.div`
+   position: relative;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   padding: 3rem 0;
+   justify-content: space-between;
+   align-items: center;
+   overflow: hidden;
+
+   ${props =>
+      props.open
+         ? drawer_show_kf
+         : `animation: 
+      drawer-close 0.5s; opacity: 0;`}
+
+   @keyframes drawer-close {
+      0% {
+         opacity: 1;
+      }
+
+      100% {
+         opacity: 0;
+      }
    }
 `;
 
@@ -56,81 +98,221 @@ const NavWrapper = styled.nav`
 `;
 
 const SideText = styled.span`
-   font-size: 1.2rem;
-
+   font-size: 1.5rem;
    a {
-      color: transparent;
-      background: white;
+      font-size: inherit;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      background: linear-gradient(to right, #00f3ff, #00f3ff 50%, #fff 50%);
       -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
+      background-size: 200% 100%;
+      background-position: 100%;
+      transition: background-position 0.2s;
 
       &:hover {
-         background: aqua;
-         -webkit-background-clip: text;
-         background-clip: text;
-         animation: thomas 0.2s forwards;
-      }
-
-      @keyframes thomas {
-         ${() => {
-            let str = ``;
-
-            for (let i = 0; i < 100; i += 5) {
-               str += `
-                  ${i}% {
-                           background: linear-gradient(90deg, #00f3ff 0% ${i}%, white ${i}%);
-                           -webkit-background-clip: text;
-                           background-clip: text;
-                        }
-                  `;
-            }
-
-            return str;
-         }}
+         background-position: 0 100%;
       }
    }
 `;
 
-/* ${() => {
-            let max = 50;
-            let i = 0;
+const SideBarButton = styled.button`
+   position: absolute;
+   right: -20px;
+   top: 50%;
+   border-radius: 100%;
+   width: 40px;
+   height: 40px;
+   box-shadow: 0px 0px 3px black;
+   background-color: #053232;
+   background-image: url(${chevron});
+   background-position: center;
+   background-size: 100%;
+   transform: translateY(-50%) ${props => (props.open ? 'rotateY(180deg)' : '')};
+   border: none;
+   cursor: pointer;
 
-            let concat = ``;
+   ${drawer_show_kf}
+`;
 
-            while (i <= max) {
-               concat += `
-                        ${i}% {
-                           background: linear-gradient(90deg, #00f3ff 0% ${i}%, white 50%);
-                           -webkit-background-clip: text;
-                           background-clip: text;
-                        }
-                     `;
-               i += 5;
+const GlobeWrapper = styled.div`
+   position: relative;
+
+   & > img {
+      --sz: 30px;
+      width: var(--sz);
+      height: var(--sz);
+
+      &:hover {
+         cursor: pointer;
+         animation: globehover 0.2s linear;
+         filter: invert(0) sepia(32%) saturate(7101%) hue-rotate(135deg)
+            brightness(103%) contrast(109%);
+
+         @keyframes globehover {
+            0% {
+               filter: invert(0);
             }
-            console.log(concat);
-            return concat;
-         }} */
+            100% {
+               filter: invert(0) sepia(32%) saturate(7101%) hue-rotate(135deg)
+                  brightness(103%) contrast(109%);
+            }
+         }
+      }
+   }
+`;
+
+const LanguageSelector = styled.div`
+   --sz: 125px;
+   position: fixed;
+   bottom: 1.5rem;
+   left: 7.8rem;
+   border-radius: 10px;
+   transform: translateY(200px);
+   ${props =>
+      props.isOpen
+         ? 'animation: openLang 0.2s; display: block; transform: unset'
+         : 'animation: closeLang 0.2s;'};
+
+   @keyframes openLang {
+      0% {
+         transform: translateX(-200px);
+      }
+
+      100% {
+         transform: translateX(0px);
+      }
+   }
+
+   @keyframes closeLang {
+      0% {
+         display: block;
+         transform: translateX(0px);
+      }
+
+      100% {
+         display: block;
+         transform: translateX(-300px);
+      }
+   }
+
+   background-color: white;
+`;
+
+const LangNav = styled.ul`
+   list-style: none;
+   padding: 1rem 1rem;
+
+   color: black;
+
+   li:first-child {
+      margin-bottom: 1.5rem;
+   }
+
+   button {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+   }
+
+   .active {
+      color: ${colors.dk_teal_darker};
+      text-shadow: 0px 0px 1px rgba(0, 0, 0);
+      span {
+         transform: scale(1.2);
+      }
+   }
+`;
 
 export default props => {
+   const [open, setOpen] = useState(true);
+   const [langOpen, setLangOpen] = useState(false);
+   const [buttonDisable, setButtonDisable] = useState(false);
+   const { t } = useTranslation();
+
+   useEffect(() => {
+      if (langOpen) {
+         setLangOpen(false);
+      }
+   }, [open]);
+
+   const languages = [
+      {
+         text: 'Português',
+         code: 'pt',
+         country_code: 'br',
+      },
+      {
+         text: 'English',
+         code: 'en',
+         country_code: 'us',
+      },
+   ];
+
    return (
-      <SideBar>
-         <Wrapper>
+      <SideBar open={open}>
+         <Wrapper open={open}>
             <SideText>Portfolio</SideText>
             <NavWrapper>
                <SideText>
-                  <Link to="/">Home</Link>
+                  <Link to="/">{t('Home')}</Link>
                </SideText>
                <SideText>
-                  <Link to="/projects">Projects</Link>
+                  <Link to="/projects">{t('Projects')}</Link>
                </SideText>
                <SideText>
-                  <Link to="/about">About</Link>
+                  <Link to="/about">{t('About')}</Link>
                </SideText>
                <SideText>
-                  <Link to="/contact">Contact</Link>
+                  <Link to="/contact">{t('Contact')}</Link>
                </SideText>
             </NavWrapper>
+            <GlobeWrapper>
+               <img
+                  src={globe}
+                  alt="globo"
+                  onClick={() => {
+                     setLangOpen(state => !state);
+                  }}
+               />
+               <LanguageSelector isOpen={langOpen}>
+                  <LangNav>
+                     {languages.map(e => {
+                        return (
+                           <li key={e.code}>
+                              <button
+                                 onClick={t => {
+                                    i18next.changeLanguage(e.code);
+                                 }}
+                                 className={
+                                    i18next.language == e.code ? 'active' : ''
+                                 }
+                              >
+                                 <span
+                                    className={`flag-icon flag-icon-${e.country_code}`}
+                                 ></span>
+                                 {e.text}
+                              </button>
+                           </li>
+                        );
+                     })}
+                  </LangNav>
+               </LanguageSelector>
+            </GlobeWrapper>
          </Wrapper>
+         <SideBarButton
+            open={open}
+            onClick={() => {
+               setOpen(state => !state);
+               setButtonDisable(true);
+               setTimeout(() => {
+                  setButtonDisable(false);
+               }, 400);
+            }}
+            disabled={buttonDisable}
+         />
       </SideBar>
    );
 };
