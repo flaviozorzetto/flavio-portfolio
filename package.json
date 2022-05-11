@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "flag-icon-css": "^4.1.7",
+    "html-react-parser": "^1.4.12",
     "i18next": "^21.8.0",
     "i18next-browser-languagedetector": "^6.1.4",
     "react": "^18.0.0",
