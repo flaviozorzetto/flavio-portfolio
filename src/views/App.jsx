@@ -41,20 +41,21 @@ async function buildText(text, setText) {
    let i = 0;
    let buildingText = [];
 
-   while (buildingText.length != totalLength) {
+   while (buildingText.length < totalLength) {
       let text = await recursiveText(fragText, buildingText, i);
       let additional = buildingText.length == totalLength ? '' : '|';
       setText(text + additional);
-      i++;
+      i += 2;
    }
 }
 
 function recursiveText(fullTextArr, currentArr, i) {
    return new Promise((res, rej) => {
       currentArr.push(fullTextArr[i]);
+      fullTextArr[i + 1] ? currentArr.push(fullTextArr[i + 1]) : null;
       setTimeout(() => {
          res(currentArr.join(''));
-      }, 25);
+      }, 40);
    });
 }
 
