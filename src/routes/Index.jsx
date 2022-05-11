@@ -12,18 +12,20 @@ const Container = styled.div`
 const TextWrapper = styled.div`
    color: white;
    position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
 
    p {
-      font-size: 1.5rem;
-      margin-bottom: 25px;
+      font-size: 2rem;
+      width: 75%;
    }
 
    h1 {
-      margin-bottom: 25px;
-      font-size: 2rem;
+      font-size: 2.5rem;
    }
 
-   width: 45%;
+   width: 60%;
 
    ${props => {
       return props.finishedWriting
@@ -49,32 +51,72 @@ const TextWrapper = styled.div`
    }
 `;
 
+const ImgContainer = styled.div`
+   display: flex;
+   height: 100%;
+   width: 40%;
+   align-items: center;
+   justify-content: center;
+
+   img {
+      border-radius: 100%;
+      height: 100%;
+
+      animation: fadeInFromNone 1.5s ease-out;
+
+      @keyframes fadeInFromNone {
+         0% {
+            display: none;
+            opacity: 0;
+         }
+
+         1% {
+            display: block;
+            opacity: 0;
+         }
+
+         100% {
+            display: block;
+            opacity: 1;
+         }
+      }
+   }
+`;
+
 const WrittingText = styled.p`
-   font-size: 1rem;
+   font-size: 2rem;
    font-family: 'Source Code Pro', monospace;
+   color: white;
 `;
 
 export default props => {
    return (
       <ContentWrapper>
          <Container>
-            <TextWrapper finishedWriting={props.ptFinished}>
-               {props.ptFinished ? (
-                  parse(props['pt_text_1'])
+            <TextWrapper finishedWriting={props.finished}>
+               {props.finished ? (
+                  parse(props['text_1'])
                ) : (
-                  <WrittingText>{props['pt_text_1']}</WrittingText>
+                  <WrittingText>{props['text_1']}</WrittingText>
                )}
-               {props.ptFinished ? (
-                  parse(props['pt_text_2'])
+               {props.finished ? (
+                  parse(props['text_2'])
                ) : (
-                  <WrittingText>{props['pt_text_2']}</WrittingText>
+                  <WrittingText>{props['text_2']}</WrittingText>
                )}
-               {props.ptFinished ? (
-                  parse(props['pt_text_3'])
+               {props.finished ? (
+                  parse(props['text_3'])
                ) : (
-                  <WrittingText>{props['pt_text_3']}</WrittingText>
+                  <WrittingText>{props['text_3']}</WrittingText>
                )}
             </TextWrapper>
+            <ImgContainer>
+               {props.finished && props.avatarFinished ? (
+                  parse(props.avatar)
+               ) : (
+                  <WrittingText>{props.avatar}</WrittingText>
+               )}
+            </ImgContainer>
          </Container>
       </ContentWrapper>
    );

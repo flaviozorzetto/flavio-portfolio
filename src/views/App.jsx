@@ -5,6 +5,7 @@ import SideBar from '../components/SideBar';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import thomas from '../assets/imgs/avatar.png';
 
 const Wrapper = styled.div`
    display: flex;
@@ -66,6 +67,9 @@ export default () => {
    const [en_text_3, en_setText_3] = useState('');
    const [enFinished, enSetFinished] = useState(false);
 
+   const [avatar, setAvatar] = useState('');
+   const [avFinished, setAvFinished] = useState(false);
+
    useEffect(() => {
       let rendering = setTimeout(() => {
          buildQueue(
@@ -94,29 +98,15 @@ export default () => {
             ],
             enSetFinished
          );
+         buildQueue(
+            [[`<img src=${thomas} alt="avatar" />`, setAvatar]],
+            setAvFinished
+         );
       }, 500);
       return () => {
          clearTimeout(rendering);
       };
    }, []);
-
-   useEffect(() => {
-      console.log(i18n.language);
-
-      // if (ptFinished) {
-      //    pt_setText_1(`<p> ${t('Hello', { lng: 'pt' })} </p>`);
-      //    pt_setText_2(
-      //       `<h1> ${t('preName', { lng: 'pt' })} Flavio Esrenko Zorzetto </h1>`
-      //    );
-      //    pt_setText_3(`<p> ${t('indexText', { lng: 'pt' })} </p>`);
-      // } else if (enFinished) {
-      //    en_setText_1(`<p> ${t('Hello', { lng: 'en' })} </p>`);
-      //    en_setText_2(
-      //       `<h1> ${t('preName', { lng: 'en' })} Flavio Esrenko Zorzetto </h1>`
-      //    );
-      //    en_setText_3(`<p> ${t('indexText', { lng: 'en' })} </p>`);
-      // }
-   }, [t]);
 
    return (
       <Wrapper>
@@ -127,10 +117,14 @@ export default () => {
                   path="/"
                   element={
                      <Index
-                        pt_text_1={pt_text_1}
-                        pt_text_2={pt_text_2}
-                        pt_text_3={pt_text_3}
-                        ptFinished={ptFinished}
+                        text_1={i18n.language == 'pt' ? pt_text_1 : en_text_1}
+                        text_2={i18n.language == 'pt' ? pt_text_2 : en_text_2}
+                        text_3={i18n.language == 'pt' ? pt_text_3 : en_text_3}
+                        finished={
+                           i18n.language == 'pt' ? ptFinished : enFinished
+                        }
+                        avatar={avatar}
+                        avatarFinished={avFinished}
                      />
                   }
                ></Route>
