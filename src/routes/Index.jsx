@@ -6,6 +6,7 @@ const Container = styled.div`
    display: flex;
    justify-content: space-between;
    height: 100%;
+   width: 100%;
    align-items: center;
 `;
 
@@ -53,7 +54,7 @@ const TextWrapper = styled.div`
 
 const ImgContainer = styled.div`
    display: flex;
-   height: 100%;
+   height: 400px;
    width: 40%;
    align-items: center;
    justify-content: center;
