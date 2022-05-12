@@ -8,29 +8,52 @@ const Container = styled.div`
    height: 100%;
    width: 100%;
    align-items: center;
+   gap: 2rem;
+
+   @media screen and (max-width: 645px) {
+      flex-direction: column;
+      justify-content: center;
+
+      & > div {
+         width: 100%;
+      }
+
+      & > div:nth-child(2) {
+         width: 80%;
+      }
+   }
 `;
 
 const TextWrapper = styled.div`
    color: white;
-   position: relative;
    display: flex;
    flex-direction: column;
    gap: 30px;
+   font-size: 20px;
+   width: 50%;
+   transition: font-size 0.3s ease-in-out;
+
+   @media screen and (max-width: 860px) {
+      font-size: 16px;
+   }
+
+   @media screen and (max-width: 645px) {
+      font-size: 12px;
+   }
 
    p {
-      font-size: 2rem;
-      width: 75%;
+      text-align: center;
+      font-size: 1.5em;
    }
 
    h1 {
-      font-size: 2.5rem;
+      text-align: center;
+      font-size: 2em;
    }
-
-   width: 60%;
 
    ${props => {
       return props.finishedWriting
-         ? `animation: fadeInFromNone 1s ease-out;`
+         ? `animation: fadeInFromNone 2s ease-out;`
          : '';
    }}
 
@@ -54,14 +77,13 @@ const TextWrapper = styled.div`
 
 const ImgContainer = styled.div`
    display: flex;
-   height: 400px;
-   width: 40%;
    align-items: center;
    justify-content: center;
+   width: 50%;
 
    img {
       border-radius: 100%;
-      height: 100%;
+      width: 100%;
 
       animation: fadeInFromNone 1.5s ease-out;
 
@@ -85,9 +107,10 @@ const ImgContainer = styled.div`
 `;
 
 const WrittingText = styled.p`
-   font-size: 2rem;
+   font-size: 1.5rem;
    font-family: 'Source Code Pro', monospace;
    color: white;
+   word-break: break-all;
 `;
 
 export default props => {

@@ -13,11 +13,17 @@ const SideBar = styled.aside`
    background-color: #023535;
    color: #ffffff;
    position: relative;
+   --sz: 200px;
+   transition: 0.5s all;
+
+   @media screen and (max-width: 425px) {
+      --sz: 150px;
+   }
 
    ${props =>
       props.open
          ? `
-      width: 200px;
+      width: var(--sz);
       animation: opening 0.6s ease-in-out;
       `
          : `
@@ -31,13 +37,13 @@ const SideBar = styled.aside`
       }
 
       100% {
-         width: 200px;
+         width: var(--sz);
       }
    }
 
    @keyframes closing {
       0% {
-         width: 200px;
+         width: var(--sz);
       }
 
       100% {
@@ -89,7 +95,7 @@ const Wrapper = styled.div`
       }
    }
 
-   @media screen and (max-height: 450px) {
+   @media screen and (max-height: 450px), (max-width: 450px) {
       padding: 2rem 0;
       transition: 0.2s all linear;
    }
@@ -128,7 +134,7 @@ const SideText = styled.span`
    }
 
    transition: 0.2s all linear;
-   @media screen and (max-height: 450px) {
+   @media screen and (max-height: 450px), (max-width: 450px) {
       font-size: 1.2rem;
    }
 `;

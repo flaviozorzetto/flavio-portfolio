@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import progGif from '../assets/imgs/programming.gif';
 
@@ -8,10 +9,10 @@ const AboutContainer = styled.div`
    height: 100%;
    color: white;
    display: flex;
-   gap: 2rem;
+   gap: 5rem;
    justify-content: space-between;
 
-   animation: fadeIn 2s ease-in-out;
+   animation: fadeIn 2s ease-out;
 
    @keyframes fadeIn {
       0% {
@@ -30,25 +31,42 @@ const AboutContainer = styled.div`
 `;
 
 const TextWrapper = styled.div`
+   width: 50%;
    display: flex;
    justify-content: center;
    flex-direction: column;
-   font-size: 1rem;
+   font-size: 18px;
 
    h2 {
-      margin-bottom: 2rem;
-      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.8em;
       text-align: center;
    }
 
    p {
-      font-size: 1.2rem;
+      font-size: 1em;
+      text-align: justify;
+
+      @media screen and (max-width: 395px) {
+         text-align: center;
+      }
    }
 
    p:not(:last-child) {
       margin-bottom: 2rem;
    }
-   width: 50%;
+
+   @media screen and (max-width: 1000px) {
+      font-size: 16px;
+   }
+
+   @media screen and (max-width: 768px) {
+      width: 100%;
+   }
+
+   @media screen and (max-width: 500px) {
+      font-size: 14px;
+   }
 `;
 
 const ImgWrapper = styled.div`
@@ -61,27 +79,22 @@ const ImgWrapper = styled.div`
       width: 100%;
       border-radius: 100%;
    }
+
+   @media screen and (max-width: 768px) {
+      display: none;
+   }
 `;
 
 export default () => {
+   const { t } = useTranslation();
+
    return (
       <ContentWrapper>
          <AboutContainer>
             <TextWrapper>
-               <h2>Sobre mim</h2>
-               <p>
-                  Meu nome é Flavio Esrenko Zorzetto, sou um desenvolvedor
-                  brasileiro, apaixonado por programação, que começou estudando
-                  back-end criando APIs utilizando node-js, desenvolvendo e
-                  aprimorando a habilidade de lógica de programação.
-               </p>
-               <p>
-                  E que está aprendendo front-end para se tornar cada vez mais
-                  um full stack consistente, onde desenvolvo aplicações WEB
-                  utilizando o conhecimento de HTML, CSS, JS em conjunto com
-                  React, Sass e styled-components, para criar aplicações com
-                  foco na fluidez e de fácil manutenção.
-               </p>
+               <h2>{t('about_title')}</h2>
+               <p>{t('about_01')}</p>
+               <p>{t('about_02')}</p>
             </TextWrapper>
             <ImgWrapper>
                <img src={progGif} alt="gif programação" />
