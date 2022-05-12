@@ -107,13 +107,8 @@ export default () => {
                placeholder="Nome Completo"
                required
             />
-            <input type="text" name="Email" placeholder="Email" required />
-            <input
-               type="text"
-               name="Telefone"
-               placeholder="Telefone"
-               required
-            />
+            <input type="email" name="Email" placeholder="Email" required />
+            <input type="tel" name="Telefone" placeholder="Telefone" required />
             <textarea placeholder="Mensagem" name="mensagem" />
             <button type="submit">Submit</button>
          </FormWrapper>
