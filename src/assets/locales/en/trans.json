@@ -9,6 +9,11 @@
       "indexText": "And i'm a full stack developer using node-js",
       "about_title": "About me",
       "about_01": "My name is Flavio Esrenko Zorzeto, i'm a brazilian developer, passionate about programming, who started studying back-end developing APIs using node-js, developing and improving programming logic.",
-      "about_02": "And it's learning front-end to be even more a consistent full stack, where I develop web applications using the knowledge of HTML, CSS and JS together with React, Sass and styled-component, with the proposite of creating fluid, flexible and easy to maintain applications."
+      "about_02": "And it's learning front-end to be even more a consistent full stack, where I develop web applications using the knowledge of HTML, CSS and JS together with React, Sass and styled-component, with the proposite of creating fluid, flexible and easy to maintain applications.",
+      "form_title": "Get in touch",
+      "form_placeholder_name": "Full name",
+      "form_placeholder_phone": "Phone",
+      "form_placeholder_message": "Enter your message",
+      "form_placeholder_submit": "Submit"
    }
 }

@@ -96,21 +96,30 @@ export default () => {
 
    return (
       <FormContainer>
-         <h2>Entre em contato</h2>
+         <h2>{t('form_title')}</h2>
          <FormWrapper
             action="https://formsubmit.co/flaviozorzetto11@gmail.com"
             method="POST"
+            target="_blank"
          >
             <input
                type="text"
                name="nome"
-               placeholder="Nome Completo"
+               placeholder={t('form_placeholder_name')}
                required
             />
             <input type="email" name="Email" placeholder="Email" required />
-            <input type="tel" name="Telefone" placeholder="Telefone" required />
-            <textarea placeholder="Mensagem" name="mensagem" />
-            <button type="submit">Submit</button>
+            <input
+               type="tel"
+               name="Telefone"
+               placeholder={t('form_placeholder_phone')}
+               required
+            />
+            <textarea
+               name="Mensagem"
+               placeholder={t('form_placeholder_message')}
+            />
+            <button type="submit">{t('form_placeholder_submit')}</button>
          </FormWrapper>
       </FormContainer>
    );

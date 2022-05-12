@@ -9,6 +9,11 @@
       "indexText": "E sou um desenvolvedor full stack com node-js",
       "about_title": "Sobre mim",
       "about_01": "Meu nome é Flavio Esrenko Zorzetto, sou um desenvolvedor brasileiro, apaixonado por programação, que começou estudando back-end criando APIs utilizando node-js, desenvolvendo e aprimorando a habilidade de lógica de programação.",
-      "about_02": "E que está aprendendo front-end para se tornar cada vez mais um full stack consistente, onde desenvolvo aplicações WEB utilizando o conhecimento de HTML, CSS, JS em conjunto com React, Sass e styled-components, para criar aplicações com foco na fluidez e de fácil manutenção."
+      "about_02": "E que está aprendendo front-end para se tornar cada vez mais um full stack consistente, onde desenvolvo aplicações WEB utilizando o conhecimento de HTML, CSS, JS em conjunto com React, Sass e styled-components, para criar aplicações com foco na fluidez e de fácil manutenção.",
+      "form_title": "Entre em contato",
+      "form_placeholder_name": "Nome Completo",
+      "form_placeholder_phone": "Celular",
+      "form_placeholder_message": "Mensagem",
+      "form_placeholder_submit": "Enviar"
    }
 }
