@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import chevron from '../assets/svgs/chevron_right.svg';
 import globe from '../assets/svgs/language.svg';
@@ -110,6 +110,16 @@ const NavWrapper = styled.nav`
    transition: 0.2s all linear;
    @media screen and (max-height: 450px) {
       gap: 1rem;
+   }
+
+   .active {
+      background: linear-gradient(to right, #00f3ff, #00f3ff 50%, #00ffcc 50%);
+      transform: scale(1.1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 100%;
+      background-position: 100%;
    }
 `;
 
@@ -278,16 +288,44 @@ export default props => {
             <SideText>Portfolio</SideText>
             <NavWrapper>
                <SideText>
-                  <Link to="/">{t('Home')}</Link>
+                  <NavLink
+                     className={({ isActive }) =>
+                        isActive ? 'active' : undefined
+                     }
+                     to="/"
+                  >
+                     {t('Home')}
+                  </NavLink>
                </SideText>
                <SideText>
-                  <Link to="/projects">{t('Projects')}</Link>
+                  <NavLink
+                     className={({ isActive }) =>
+                        isActive ? 'active' : undefined
+                     }
+                     to="/projects"
+                  >
+                     {t('Projects')}
+                  </NavLink>
                </SideText>
                <SideText>
-                  <Link to="/about">{t('About')}</Link>
+                  <NavLink
+                     className={({ isActive }) =>
+                        isActive ? 'active' : undefined
+                     }
+                     to="/about"
+                  >
+                     {t('About')}
+                  </NavLink>
                </SideText>
                <SideText>
-                  <Link to="/contact">{t('Contact')}</Link>
+                  <NavLink
+                     className={({ isActive }) =>
+                        isActive ? 'active' : undefined
+                     }
+                     to="/contact"
+                  >
+                     {t('Contact')}
+                  </NavLink>
                </SideText>
             </NavWrapper>
             <GlobeWrapper>

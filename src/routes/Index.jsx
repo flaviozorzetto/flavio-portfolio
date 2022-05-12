@@ -42,12 +42,12 @@ const TextWrapper = styled.div`
    }
 
    p {
-      text-align: center;
+      text-align: left;
       font-size: 1.5em;
    }
 
    h1 {
-      text-align: center;
+      text-align: left;
       font-size: 2em;
    }
 
