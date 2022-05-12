@@ -88,6 +88,11 @@ const Wrapper = styled.div`
          opacity: 0;
       }
    }
+
+   @media screen and (max-height: 450px) {
+      padding: 2rem 0;
+      transition: 0.2s all linear;
+   }
 `;
 
 const NavWrapper = styled.nav`
@@ -95,6 +100,11 @@ const NavWrapper = styled.nav`
    align-items: center;
    flex-direction: column;
    gap: 2rem;
+
+   transition: 0.2s all linear;
+   @media screen and (max-height: 450px) {
+      gap: 1rem;
+   }
 `;
 
 const SideText = styled.span`
@@ -115,6 +125,11 @@ const SideText = styled.span`
       &:hover {
          background-position: 0 100%;
       }
+   }
+
+   transition: 0.2s all linear;
+   @media screen and (max-height: 450px) {
+      font-size: 1.2rem;
    }
 `;
 

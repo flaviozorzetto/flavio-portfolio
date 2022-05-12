@@ -5,7 +5,7 @@ const ContentWrapper = styled.div`
    max-width: 70%;
    width: 100%;
    margin: auto;
-   padding: 8rem 0;
+   /* padding: 8rem 0; */
 `;
 
 export default props => {
