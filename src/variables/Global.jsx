@@ -19,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         height: 100vh;
-        background: radial-gradient(circle, rgba(1,89,88,1) 0% 10%, rgba(2,53,53,1) 100%);
     }
 
     #root {

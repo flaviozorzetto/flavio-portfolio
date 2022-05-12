@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import About from '../routes/About';
 import Index from '../routes/Index';
+import Contact from '../routes/Contact';
 import SideBar from '../components/SideBar';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
@@ -17,6 +18,11 @@ const Container = styled.div`
    display: flex;
    align-items: center;
    justify-content: center;
+   background: radial-gradient(
+      circle,
+      rgba(1, 89, 88, 1) 0% 10%,
+      rgba(2, 53, 53, 1) 100%
+   );
 `;
 
 const timeout = ms => {
@@ -133,6 +139,7 @@ export default () => {
                   }
                ></Route>
                <Route path="/about" element={<About />}></Route>
+               <Route path="/contact" element={<Contact />}></Route>
             </Routes>
          </Container>
       </Wrapper>
