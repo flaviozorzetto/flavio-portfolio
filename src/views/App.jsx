@@ -55,7 +55,7 @@ function recursiveText(fullTextArr, currentArr, i) {
       fullTextArr[i + 1] ? currentArr.push(fullTextArr[i + 1]) : null;
       setTimeout(() => {
          res(currentArr.join(''));
-      }, 40);
+      }, 50);
    });
 }
 

@@ -283,6 +283,7 @@ export default props => {
                         return (
                            <li key={e.code}>
                               <button
+                                 aria-label="openSideBar"
                                  onClick={t => {
                                     i18next.changeLanguage(e.code);
                                  }}
