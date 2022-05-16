@@ -4,9 +4,7 @@ import Form from '../components/Form';
 export default () => {
    return (
       <ContentWrapper>
-         <Form>
-             
-         </Form>
+         <Form />
       </ContentWrapper>
    );
 };

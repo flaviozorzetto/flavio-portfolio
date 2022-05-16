@@ -41,6 +41,7 @@ const FormContainer = styled.div`
 
 const FormWrapper = styled.form`
    width: 80%;
+   max-width: 600px;
    flex-wrap: wrap;
    display: flex;
    justify-content: center;
@@ -83,7 +84,7 @@ const FormWrapper = styled.form`
    input {
       width: 100%;
    }
-
+   
    textarea {
       resize: none;
       width: 100%;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ContentWrapper from '../components/ContentWrapper';
 import parse from 'html-react-parser';
+import avatarImg from '../assets/imgs/avatar.png';
 
 const Container = styled.div`
    display: flex;
@@ -42,12 +43,12 @@ const TextWrapper = styled.div`
    }
 
    p {
-      text-align: left;
+      text-align: center;
       font-size: 1.5em;
    }
 
    h1 {
-      text-align: left;
+      text-align: center;
       font-size: 2em;
    }
 
@@ -80,27 +81,25 @@ const ImgContainer = styled.div`
    align-items: center;
    justify-content: center;
    width: 50%;
+   overflow: hidden;
 
    img {
       border-radius: 100%;
       width: 100%;
 
-      animation: fadeInFromNone 1.5s ease-out;
+      animation: ${props => {
+            return props.finishedWriting ? `fadeInFromNone` : 'imgSlide';
+         }}
+         2s ease-out;
 
-      @keyframes fadeInFromNone {
+      @keyframes imgSlide {
          0% {
-            display: none;
+            transform: translateX(100%);
             opacity: 0;
          }
 
-         1% {
-            display: block;
+         50% {
             opacity: 0;
-         }
-
-         100% {
-            display: block;
-            opacity: 1;
          }
       }
    }
@@ -134,12 +133,8 @@ export default props => {
                   <WrittingText>{props['text_3']}</WrittingText>
                )}
             </TextWrapper>
-            <ImgContainer>
-               {props.finished && props.avatarFinished ? (
-                  parse(props.avatar)
-               ) : (
-                  <WrittingText>{props.avatar}</WrittingText>
-               )}
+            <ImgContainer finishedWriting={props.finished}>
+               <img src={avatarImg} alt="avatar" />
             </ImgContainer>
          </Container>
       </ContentWrapper>

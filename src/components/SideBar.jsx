@@ -13,6 +13,7 @@ const SideBar = styled.aside`
    background-color: #023535;
    color: #ffffff;
    position: relative;
+   z-index: 2;
    --sz: 200px;
    transition: 0.5s all;
 
